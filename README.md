@@ -20,11 +20,11 @@ var d=a(1),e=a(2),f=a(3)
 ```
 
 #### Real-world example
-998.51 kB =uglify=> 318.08 kB
-vs
-998.51 kB =unpathify=> 903.50 kB =uglify=> 277.34 kB
+998.51 kB =uglify=> **318.08 kB**
 
-13% Smaller
+`vs`
+
+998.51 kB =unpathify=> 903.50 kB =uglify=> **277.34 kB**
 
 How to use it
 -------------
