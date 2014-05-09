@@ -1,8 +1,4 @@
-unpathify
-=========
-Compress browserify require paths for better minification.
-
-How it Works
+What it does
 ------------
 Turns your browserify output (i.e. bundle.js):
 ```javascript
@@ -23,8 +19,15 @@ Which you can then throw into uglifyjs or some other minification script.
 var d=a(1),e=a(2),f=a(3)
 ```
 
-USAGE
------
+#### Real-world example
+998.51 kB =uglify=> 318.08 kB
+vs
+998.51 kB =unpathify=> 903.50 kB =uglify=> 277.34 kB
+
+13% Smaller
+
+How to use it
+-------------
 There are 3 ways you can use this. (Note that both the Grunt and CLI methods simply  re-write the input file)
 
 ### Grunt
