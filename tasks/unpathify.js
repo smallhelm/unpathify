@@ -1,4 +1,5 @@
 var _ = require('lodash');
+var fs = require('fs');
 var unpack = require('browser-unpack');
 var intreq = require('intreq');
 var pack = require('browser-pack');
