@@ -1,0 +1,21 @@
+{
+  "name": "unpathify",
+  "version": "0.0.0",
+  "description": "Browserify transform to compress require paths for better minification i.e. require('some/long/path') => require(1)",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/smallhelm/unpathify.git"
+  },
+  "keywords": [
+    "browserify",
+    "browserify-transform",
+    "minification"
+  ],
+  "author": "smallhelm",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/smallhelm/unpathify/issues"
+  },
+  "homepage": "https://github.com/smallhelm/unpathify"
+}
