@@ -1,5 +1,5 @@
 var _ = require('lodash');
-var unpathify = require('../main');
+var process_file = require('../main').process_file;
 
 module.exports = function(grunt){
 	grunt.registerMultiTask('unpathify', 'Compress browserify require paths for better minification', function(){
@@ -7,7 +7,7 @@ module.exports = function(grunt){
 		var done = _.after(files.length, this.async());
         var i;
         for(i = 0; i < files.length; i++){
-			unpathify(files[i], done);
+			process_file(files[i], done);
         }
 	});
 };

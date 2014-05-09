@@ -35,14 +35,19 @@ var minify_require_paths = function(orig, callback){
 };
 
 var process_file = function(file, done){
-	var code = fs.readFileSync(file);
-	minify_require_paths(code, function(minied){
-		fs.writeFileSync(file, minied);
-		done();
+	fs.readFile(file, function(err, code){
+		if(err) throw err;
+		minify_require_paths(code, function(minied){
+			fs.writeFile(file, minied, function(err){
+				if(err) throw err;
+				done();
+			});
+		});
 	});
 };
 
-module.exports = process_file;
+module.exports = minify_require_paths;
+module.exports.process_file = process_file;
 module.exports.cli = function(){
 	var file = arguments[0];
 	if(!fs.existsSync(file)){
