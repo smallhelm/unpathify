@@ -1,0 +1,5 @@
+#!/usr/bin/env node
+
+process.argv.shift(1);
+process.argv.shift(1);
+require('../main.js').cli.apply(null, process.argv);
