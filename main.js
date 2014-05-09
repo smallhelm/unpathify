@@ -51,7 +51,8 @@ module.exports.process_file = process_file;
 module.exports.cli = function(){
 	var file = arguments[0];
 	if(!fs.existsSync(file)){
-		console.log('USAGE: unpathify <input>')
+		console.log('USAGE: unpathify <input>');
+		return;
 	}
 	process_file(file, _.noop);
 };

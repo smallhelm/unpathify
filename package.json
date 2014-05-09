@@ -14,6 +14,8 @@
   ],
   "main": "main.js",
   "files": [
+    "bin",
+    "main.js",
     "tasks"
   ],
   "bin": {
