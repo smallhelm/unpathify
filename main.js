@@ -13,7 +13,7 @@ var intreqFn = function(unpacked, callback){
 	r.on('end', function(){
 		callback(rows);
 	});
-	unpacked.forEach(function(row){
+	_.each(unpacked, function(row){
 		r.write(row);
 	});
 	r.end();
