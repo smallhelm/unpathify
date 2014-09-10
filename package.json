@@ -29,7 +29,7 @@
   "homepage": "https://github.com/smallhelm/unpathify",
   "dependencies": {
     "lodash": "~2.4.1",
-    "browser-unpack": "~0.2.3",
+    "browser-unpack": "~1.0.0",
     "browser-pack": "~2.0.1",
     "intreq": "0.0.0"
   }
