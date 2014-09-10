@@ -8,6 +8,7 @@
   },
   "keywords": [
     "browserify",
+    "browserify-tool",
     "minification",
     "gruntplugin",
     "cli"
@@ -22,6 +23,7 @@
     "unpathify": "bin/unpathify"
   },
   "author": "smallhelm",
+  "contributors": ["smallhelm", "taylorhakes"],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/smallhelm/unpathify/issues"

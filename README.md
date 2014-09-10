@@ -19,6 +19,8 @@ Which you can then throw into uglifyjs or some other minification script.
 var d=a(1),e=a(2),f=a(3)
 ```
 
+`NOTE this is not a browserify transforms, it's a browserify tool`
+
 #### Real-world example
 998.51 kB =uglify=> **318.08 kB**
 
