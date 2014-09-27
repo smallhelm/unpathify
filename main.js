@@ -3,6 +3,7 @@ var fs = require('fs');
 var unpack = require('browser-unpack');
 var intreq = require('intreq');
 var pack = require('browser-pack');
+var through = require('through');
 
 var intreqFn = function(unpacked, callback){
 	var r = intreq();
@@ -20,6 +21,18 @@ var intreqFn = function(unpacked, callback){
 };
 
 var minify_require_paths = function(orig, callback){
+	if (arguments.length === 0) {
+		var code = '';
+		return through(function(data){
+			code += data;
+		}, function(){
+			var self = this;
+			minify_require_paths(code, function(res){
+				self.queue(res);
+				self.queue(null);
+			});
+		});
+	}
 	var unpacked = unpack(orig.toString());
 	intreqFn(unpacked, function(rows){
 		var p = pack();
@@ -50,10 +63,13 @@ module.exports = minify_require_paths;
 module.exports.process_file = process_file;
 module.exports.cli = function(){
 	var file = arguments[0];
-	if(!fs.existsSync(file)){
-		console.log('USAGE: unpathify <input>');
-		return;
+	if(file){
+		if(!fs.existsSync(file)){
+			return console.error('File does not exist: %s', file);
+		}
+		process_file(file, _.noop);
+	} else {
+		process.stdin.pipe(minify_require_paths()).pipe(process.stdout);
 	}
-	process_file(file, _.noop);
 };
 

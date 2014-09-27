@@ -33,9 +33,10 @@
   },
   "homepage": "https://github.com/smallhelm/unpathify",
   "dependencies": {
-    "lodash": "~2.4.1",
-    "browser-unpack": "~1.0.0",
     "browser-pack": "~3.1.1",
-    "intreq": "0.0.0"
+    "browser-unpack": "~1.0.0",
+    "intreq": "0.0.0",
+    "lodash": "~2.4.1",
+    "through": "~2.3.6"
   }
 }
