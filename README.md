@@ -55,6 +55,12 @@ $ npm install -g unpathify
 $ unpathify bundle.js
 ```
 
+Piping is also supported:
+
+```sh
+$ browserify in.js | unpathify | uglifyjs -cm > out.js
+```
+
 ### Node
 ```javascript
 var unpathify = require('unpathify');
@@ -62,6 +68,17 @@ var unpathify = require('unpathify');
 unpathify(code, function(code_unpathed){
    console.log(code_unpathed);
 });
+```
+
+Streaming is also supported:
+
+```javascript
+var browserify = require('browserify');
+var unpathify = require('unpathify');
+...
+var b = browserify();
+b.add('./browser/main.js');
+b.bundle().pipe(unpathify()).pipe(process.stdout);
 ```
 
 License
