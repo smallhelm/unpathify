@@ -1,6 +1,6 @@
 {
   "name": "unpathify",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Compress browserify require paths for better minification i.e. require('some/long/path') => require(1)",
   "repository": {
     "type": "git",
