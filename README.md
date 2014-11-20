@@ -49,6 +49,19 @@ module.exports = function(grunt){
 };
 ```
 
+You can also pass options to `browser-pack` that is re-building your bundle.
+
+```javascript
+unpathify: {
+    files: ["dist/awesome.js"],
+    options: {
+        packOptions: {
+            standalone: "StandaloneName"
+        }
+    }
+}
+```
+
 ### Command Line
 ```sh
 $ npm install -g unpathify

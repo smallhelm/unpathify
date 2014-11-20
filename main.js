@@ -20,7 +20,7 @@ var intreqFn = function(unpacked, callback){
 	r.end();
 };
 
-var minify_require_paths = function(orig, callback){
+var minify_require_paths = function(orig, callback, packOptions){
 	if (arguments.length === 0) {
 		var code = '';
 		return through(function(data){
@@ -35,7 +35,7 @@ var minify_require_paths = function(orig, callback){
 	}
 	var unpacked = unpack(orig.toString());
 	intreqFn(unpacked, function(rows){
-		var p = pack();
+		var p = pack(packOptions);
 		var data = '';
 		p.on('data', function(buf){
 			data += buf;
@@ -47,7 +47,7 @@ var minify_require_paths = function(orig, callback){
 	});
 };
 
-var process_file = function(file, done){
+var process_file = function(file, done, packOptions){
 	fs.readFile(file, function(err, code){
 		if(err) throw err;
 		minify_require_paths(code, function(minied){
@@ -55,7 +55,7 @@ var process_file = function(file, done){
 				if(err) throw err;
 				done();
 			});
-		});
+		}, packOptions);
 	});
 };
 
@@ -63,6 +63,7 @@ module.exports = minify_require_paths;
 module.exports.process_file = process_file;
 module.exports.cli = function(){
 	var file = arguments[0];
+    //TODO: accept console arguments for pack
 	if(file){
 		if(!fs.existsSync(file)){
 			return console.error('File does not exist: %s', file);
