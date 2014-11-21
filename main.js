@@ -63,7 +63,7 @@ module.exports = minify_require_paths;
 module.exports.process_file = process_file;
 module.exports.cli = function(){
 	var file = arguments[0];
-    //TODO: accept console arguments for pack
+	//TODO: accept console arguments for pack
 	if(file){
 		if(!fs.existsSync(file)){
 			return console.error('File does not exist: %s', file);
