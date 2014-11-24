@@ -1,26 +1,5 @@
 DEPRECATED in favor of [bundle-collapser](https://www.npmjs.org/package/bundle-collapser)
 
-What it does
-------------
-Turns your browserify output (i.e. bundle.js):
-```javascript
-var _         = require('lodash');
-var robot     = require('./robot.js');
-var something = require('../some/long/path');
-```
-
-Into this:
-```javascript
-var _         = require(1);
-var robot     = require(2);
-var something = require(3);
-```
-
-Which you can then throw into uglifyjs or some other minification script.
-```javascript
-var d=a(1),e=a(2),f=a(3)
-```
-
 Migrating to bundle-collapser from unpathify 
 --------------------------------------------
 
