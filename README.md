@@ -1,3 +1,5 @@
+DEPRECATED in favor of [bundle-collapser](https://www.npmjs.org/package/bundle-collapser)
+
 What it does
 ------------
 Turns your browserify output (i.e. bundle.js):
@@ -19,80 +21,58 @@ Which you can then throw into uglifyjs or some other minification script.
 var d=a(1),e=a(2),f=a(3)
 ```
 
-`NOTE this is not a browserify transforms, it's a browserify tool`
+Migrating to bundle-collapser from unpathify 
+--------------------------------------------
 
-#### Real-world example
-998.51 kB =uglify=> **318.08 kB**
-
-`vs`
-
-998.51 kB =unpathify=> 903.50 kB =uglify=> **277.34 kB**
-
-How to use it
--------------
-There are 3 ways you can use this. (Note that both the Grunt and CLI methods simply  re-write the input file)
-
-### Grunt
 ```sh
-$ npm install unpathify --save-dev
+$ npm install bundle-collapser --save-dev
 ```
-Gruntfile.js
-```javascript
-module.exports = function(grunt){
-    grunt.initConfig({
-        unpathify: {
-            files: ['bundle.js']
-        }
-    });
 
-    grunt.loadNpmTasks('unpathify');
+### grunt
+Gruntfile.js
+```js
+var collapse = require('bundle-collapser/plugin');
+module.exports = function(grunt){
+  grunt.initConfig({
+    browserify: {
+      dev: {
+        files: {'bundle.js': ['main.js']},
+        options: {
+          plugin: [collapse]
+        }
+      }
+    }
+  });
+  grunt.loadNpmTasks('grunt-browserify');
 };
 ```
 
-You can also pass options to `browser-pack` that is re-building your bundle.
-
-```javascript
-unpathify: {
-    files: ["dist/awesome.js"],
-    options: {
-        packOptions: {
-            standalone: "StandaloneName"
-        }
-    }
-}
-```
-
-### Command Line
-```sh
-$ npm install -g unpathify
-$ unpathify bundle.js
-```
-
-Piping is also supported:
-
-```sh
-$ browserify in.js | unpathify | uglifyjs -cm > out.js
-```
-
-### Node
-```javascript
-var unpathify = require('unpathify');
-...
-unpathify(code, function(code_unpathed){
-   console.log(code_unpathed);
+### gulp
+gulpfile.js
+```js
+var collapse = require('bundle-collapser/plugin');
+gulp.task('default', function() {
+  return browserify('./main.js')
+    .plugin(collapse)
+    .bundle()
+    .pipe(source('bundle.js'))
+    .pipe(gulp.dest('scripts'));
 });
 ```
 
-Streaming is also supported:
 
-```javascript
-var browserify = require('browserify');
-var unpathify = require('unpathify');
-...
-var b = browserify();
-b.add('./browser/main.js');
-b.bundle().pipe(unpathify()).pipe(process.stdout);
+### Command Line
+```sh
+$ sudo npm install -g bundle-collapser
+$ bundle-collapser bundle.js bundle.js
 ```
+Piping
+```sh
+$ browserify main.js | bundle-collapser | uglifyjs -cm > bundle.js
+```
+
+### Node
+See [this](http://github.com/substack/bundle-collapser#api)
 
 License
 -------
